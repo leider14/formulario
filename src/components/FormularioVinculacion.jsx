@@ -781,21 +781,22 @@ const FormularioVinculacion = () => {
 
         {/* Stepper */}
         <div className="mb-8">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between w-full">
             {Array.from({ length: totalSteps }, (_, index) => (
-              <div key={index + 1} className="flex items-center">
+              <div key={index + 1} className="flex items-center flex-1">
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
+                  className={`w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-xs sm:text-sm font-medium cursor-pointer transition-colors ${
                     index + 1 <= currentStep
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-200 text-gray-600'
+                      ? 'bg-blue-600 text-white hover:bg-blue-700'
+                      : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
                   }`}
+                  onClick={() => setCurrentStep(index + 1)}
                 >
                   {index + 1}
                 </div>
                 {index < totalSteps - 1 && (
                   <div
-                    className={`w-16 h-1 mx-2 ${
+                    className={`flex-1 h-1 mx-1 sm:mx-2 ${
                       index + 1 < currentStep ? 'bg-blue-600' : 'bg-gray-200'
                     }`}
                   />

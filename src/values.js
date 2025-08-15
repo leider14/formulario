@@ -151,3 +151,95 @@ export let familiaresRelacionadosPEP = Array.from({ length: 10 }, (_, index) => 
   fechaVinculacionCargo: '',
   fechaDesvinculacionCargo: ''
 }));
+
+// ===== FORMULARIO DE CLIENTE =====
+
+// Información general del formulario de cliente
+export let fechaCliente = '';
+export let empresaCliente = '';
+
+// Información del cliente
+export let tipoCliente = '';
+export let tipoPersonaCliente = '';
+export let tipoDocumentoCliente = '';
+export let otroTipoDocumentoCliente = '';
+export let nombreRazonSocialCliente = '';
+export let tipoDocumentoRepresentanteCliente = '';
+export let otroTipoDocumentoRepresentanteCliente = '';
+export let numeroDocumentoRepresentanteCliente = '';
+export let nombreApellidosRepresentanteCliente = '';
+export let direccionCliente = '';
+export let barrioCliente = '';
+export let ciudadMunicipioCliente = '';
+export let departamentoCliente = '';
+export let telefonoCliente = '';
+export let emailCliente = '';
+export let sitioWebCliente = '';
+export let nombreContactoCliente = '';
+export let telefonoContactoCliente = '';
+export let celularContactoCliente = '';
+
+// Información tributaria del cliente
+export let tipoIVACliente = '';
+export let granContribuyenteCliente = '';
+export let resolucionGranContribuyenteCliente = '';
+export let autorretenedorCliente = '';
+export let resolucionAutorretenedorCliente = '';
+export let indicadorCREE41Cliente = '';
+export let indicadorRetencion42Cliente = '';
+export let actividadEconomicaDIANCliente = '';
+export let codigoEANSupermercadosCliente = '';
+
+// Tipo de documento y cliente
+export let tipoDocumentoEntregaCliente = '';
+export let tipoClienteCredito = '';
+export let transaccionesInternacionalesCliente = '';
+export let paisesTransaccionesCliente = '';
+export let activosVirtualesCliente = '';
+export let paisesActivosVirtualesCliente = '';
+
+// Garantías del cliente
+export let carteraHipotecaCliente = '';
+export let valorCarteraHipotecaCliente = '';
+export let pignoracionHipotecaCliente = '';
+export let valorPignoracionHipotecaCliente = '';
+
+// Personas expuestas políticamente del cliente
+export let esPEPCliente = false;
+export let administraRecursosPoliticosCliente = '';
+export let gozaReconocimientoPublicoCliente = '';
+export let ejercePoderPublicoCliente = '';
+export let nombreEntidadVinculadaCliente = '';
+export let nitEntidadVinculadaCliente = '';
+export let cargoDesempenadoCliente = '';
+export let fechaVinculacionCliente = '';
+export let fechaDesvinculacionCliente = '';
+export let tieneRelacionPEPCliente = '';
+export let tipoRelacionPEPCliente = '';
+
+// Tabla PEP del cliente (4 filas)
+export let personasPEPCliente = Array.from({ length: 4 }, () => ({
+  nombreApellido: '',
+  tipoDocumento: '',
+  numeroDocumento: '',
+  tipoRelacion: '',
+  cargo: '',
+  entidad: ''
+}));
+
+// Tabla accionistas del cliente (4 filas)
+export let accionistasCliente = Array.from({ length: 4 }, () => ({
+  nombreRazonSocial: '',
+  nacionalidad: '',
+  tipoDocumento: '',
+  numeroDocumento: '',
+  participacion: ''
+}));
+
+// Gloria Colombia SAS
+export let contactoVentasCliente = '';
+
+// Declaraciones del cliente
+export let declaracionOrigenFondosCliente = '';
+export let compromisoCliente = '';
+export let autorizacionTratamientoDatosCliente = '';

@@ -1,0 +1,65 @@
+Necesito que modifiques el formulario  de clientes llamado (formulariocliente.jsx), para que sea parecido al formulacionrio de vinculacion de clientes llamado (formularioVinculacion.jsx), tenga en cuenta el estilo de steps, ademas agregue las variables en values js, y agregue todos los campos y la estructura que te digo acontinuacoin
+
+Seccion de informacion general
+la fehca, con dia mes y año,
+Un seleccionable entre GLORIA COLOMBIA S.A.S o CONSEVAS CALIFORNIA S.A.se
+
+Seccion informacion del CLIENTE
+En esta seccion se selecciona si es nuevo cliente o actualiza cliente.
+Si es persona natural o si es persona juridica.
+Tipo de documento donde se selecciona si es cc, nit, ce, otro tipo de documento (al seleccionar otro tipo de documento se despliega un campo para que ingrese el tipo de documento).
+Nombre o razon social de la empresa.
+Nombre y apellido legal del representante legal seleccionar el tipo de documento, cc, otro, ce, en caso de seleccionar otro tipo de documento se despliega un campo para que ingrese el tipo de documento. y ademas ingresar el numero de documento.
+direccion, 
+barrio, 
+ciudad/municipio, 
+departamento, 
+telefono
+email
+sitio web
+nombre de contacto
+celular
+
+seccion Informacion tributaria
+Tipo de iva - regimen, se puede seleccionar entre r.comun, r.simplificado, No.responable
+gran contribuyente, si es gran contribuyente se debe seleccionar si es si o no. en caso de no ser gran contribuyente mostrar un campo de texto para ingresar una res. no.
+Autorretenedor, si o no, y en caso de no ser autoretenedor mostrar un campo de texto para ingresar una res. no.
+indicador CREE41 si o no
+indicador retencio 42, si o no
+actividad economica dian, un campo de texto para ingresar la actividad economica.
+codigo ean supermercados, un campo de texto para ingresar el codigo ean supermercados.
+
+Seccion de tipo de documento de entrega y tipo de cliente
+tipo de doc. de entrega se puede seleccionar si es factura o remision.
+tipo de cliente, contado o credito
+campo para seleccionar si realiza o no transacciones internacionales o en moneda extranjera, si selecciona si, debe de aparecer un campo para escribir el pais o paises.
+campo para seccion donde debe seleccionar si maneja o no activos virtuales, si selecciona si, debe de aparecer un campo para escribir el pais o paises.
+
+Seccion de garantias
+cartera hipoteca, si o no y el valor de la garantia.
+pignoracion hipoteca, si o no y el valor de la garantia.
+
+Seccion de personas expuestas politicamente.
+agregar un check box donde se pone si tiene relacion con un PEP, si selecciona si, debe mostrar toda la demas seccion, si no, no se debe mostrar toda esta seccion, esto debe dechir el check ¿Es usted o fue una persona politicamente expuesta ?
+Administra recursos politicos, si o no,
+goza de reconocimiento publico  Si o no,
+ejerce algun grado de poder publico, si o no,
+nombre de la entidad vinculada
+nit de la entidad vinculada
+cargo que desempeña o desempeño
+fecha de vinculacion
+fecha de desvinculacion
+tiene relacion o vinculo con personas pep, si o no, si si tiene relacion debe selecionar entre, (hasta 2° grado de consanguinidad o afinidad, 1° de afinidad, 1° civil)
+ahora una tabla donde se debe ingresar las personas expuestas politicamente u o si tiene relacion con un pep, donde se deben ingresar(nombre y apellido, tipo de documento, n documento, tipo de relacion, cargo y entidad), solo agregar 4 filas
+ahora una tabla donde se debe ingresar accionestas y beneficiaros finales con participacion mayor o igual al 5%(donde se va agregar, nombre o razon social,nacionalidad,  tipo de documento, n documento,% participacion, ), solo agregar 4 filas
+
+En caso de haber seleccionado gloria colombia s.a.s se habilita esta seccion(seccion para uso exclusivo de gloria colombia s.a.s)
+mini seccion de gloria colombia s.a.s que se llama quien contacta con cliente, ventas
+poner un texto por ahora yo pongo el texto luego
+
+Seccion de declaraciones y compromisos
+Declaracion origen de fondos, agregar un texto por ahora yo pongo el texto luego
+Compromiso del cliente , agregar un texto por ahora yo pongo el texto luego
+autorizacion tratamiento datos personales, agregar un texto por ahora yo pongo el texto luego
+
+
