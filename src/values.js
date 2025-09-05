@@ -3,8 +3,8 @@
 // Información general
 export let fechaDiligenciamiento = '';
 export let tipoVinculacion = { inicial: false, actualizacion: false };
-export let claseTercero = { cliente: false, codeudor: false };
-export let proveedorPersonaNatural = '';
+export let claseTercero = { cliente: false, codeudor: false, proveedor: false, accionista: false };
+export let tipoEntidad = '';
 export let nombreClientePrincipal = '';
 
 // Datos Persona Jurídica

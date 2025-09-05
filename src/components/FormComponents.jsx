@@ -210,7 +210,7 @@ export const TributaryTable = ({
           <thead>
             <tr className="bg-gray-50">
               <th className="px-4 py-2 border border-gray-300 text-left text-sm font-medium text-gray-700">
-                El cliente
+                El cliente o proveedor
               </th>
               <th className="px-4 py-2 border border-gray-300 text-center text-sm font-medium text-gray-700">
                 Sí

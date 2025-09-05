@@ -18,8 +18,8 @@ const FormularioVinculacion = () => {
     // Información general
     fechaDiligenciamiento: '',
     tipoVinculacion: { inicial: false, actualizacion: false },
-    claseTercero: { cliente: false, codeudor: false },
-    proveedorPersonaNatural: '',
+    claseTercero: { cliente: false, codeudor: false, proveedor: false, accionista: false },
+    tipoEntidad: '',
     nombreClientePrincipal: '',
 
     // Datos Persona Jurídica
@@ -187,13 +187,37 @@ const FormularioVinculacion = () => {
 
   const nextStep = () => {
     if (currentStep < totalSteps) {
-      setCurrentStep(currentStep + 1);
+      let nextStepNumber = currentStep + 1;
+      
+      // Si estamos en el paso 1 y no se seleccionó "Persona Jurídica", saltar al paso 3
+      if (currentStep === 1 && formData.tipoEntidad !== 'personaJuridica') {
+        nextStepNumber = 3;
+      }
+      
+      // Si estamos en el paso 3 y no se seleccionó "Persona Natural", saltar al paso 5
+      if (currentStep === 3 && formData.tipoEntidad !== 'personaNatural') {
+        nextStepNumber = 5;
+      }
+      
+      setCurrentStep(nextStepNumber);
     }
   };
 
   const prevStep = () => {
     if (currentStep > 1) {
-      setCurrentStep(currentStep - 1);
+      let prevStepNumber = currentStep - 1;
+      
+      // Si estamos en el paso 3 y no se seleccionó "Persona Jurídica", volver al paso 1
+      if (currentStep === 3 && formData.tipoEntidad !== 'personaJuridica') {
+        prevStepNumber = 1;
+      }
+      
+      // Si estamos en el paso 5 y no se seleccionó "Persona Natural", volver al paso 3
+      if (currentStep === 5 && formData.tipoEntidad !== 'personaNatural') {
+        prevStepNumber = 3;
+      }
+      
+      setCurrentStep(prevStepNumber);
     }
   };
 
@@ -251,17 +275,18 @@ const FormularioVinculacion = () => {
 
             <CheckboxGroup
               label="CLASE DE TERCERO"
-              options={{ cliente: 'Cliente', codeudor: 'Codeudor' }}
+              options={{ cliente: 'Cliente', codeudor: 'Codeudor', proveedor: 'Proveedor', accionista: 'Accionista' }}
               value={formData.claseTercero}
               onChange={(value) => updateFormData('claseTercero', value)}
               required
             />
 
             <SelectInput
-              label="PROVEEDOR PERSONA NATURAL"
-              value={formData.proveedorPersonaNatural}
-              onChange={(e) => updateFormData('proveedorPersonaNatural', e.target.value)}
+              label="TIPO DE ENTIDAD"
+              value={formData.tipoEntidad}
+              onChange={(e) => updateFormData('tipoEntidad', e.target.value)}
               options={[
+                { value: 'personaNatural', label: 'Persona Natural' },
                 { value: 'personaJuridica', label: 'Persona Jurídica' },
                 { value: 'entidadesEstado', label: 'Entidades del Estado' },
                 { value: 'entidadesMixtas', label: 'Entidades Mixtas' },
