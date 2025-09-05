@@ -7,7 +7,7 @@ import {
   SelectInput
 } from './FormComponents.jsx';
 
-const FormularioPEP = ({ formData, updateFormData, updateNestedFormData }) => {
+const FormularioPEP = ({ formData, updateFormData, updateNestedFormData, agregarFamiliar, eliminarFamiliar }) => {
   const [showFamiliares, setShowFamiliares] = useState(false);
 
   const opcionesRelacionParentesco = [
@@ -209,9 +209,19 @@ const FormularioPEP = ({ formData, updateFormData, updateNestedFormData }) => {
           <div className="space-y-6">
             {formData.familiaresRelacionadosPEP.map((familiar, index) => (
               <div key={index} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
-                <h4 className="text-lg font-medium text-gray-800 mb-4">
-                  Item {familiar.numeroItem}
-                </h4>
+                <div className="flex justify-between items-center mb-4">
+                  <h4 className="text-lg font-medium text-gray-800">
+                    Item {familiar.numeroItem}
+                  </h4>
+                  {formData.familiaresRelacionadosPEP.length > 1 && (
+                    <button
+                      onClick={() => eliminarFamiliar(index)}
+                      className="px-3 py-1 bg-red-600 text-white rounded-md hover:bg-red-700 text-sm"
+                    >
+                      Eliminar Familiar
+                    </button>
+                  )}
+                </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <SelectInput
@@ -305,6 +315,16 @@ const FormularioPEP = ({ formData, updateFormData, updateNestedFormData }) => {
                 </div>
               </div>
             ))}
+            
+            {/* Botón para agregar nuevo familiar */}
+            <div className="flex justify-center pt-4">
+              <button
+                onClick={agregarFamiliar}
+                className="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 font-medium"
+              >
+                + Agregar Familiar
+              </button>
+            </div>
           </div>
         )}
       </div>

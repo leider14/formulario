@@ -151,9 +151,9 @@ const FormularioVinculacion = () => {
     fechaVinculacionCargoPEP: '',
     fechaDesvinculacionCargoPEP: '',
 
-    // Array de 10 componentes de familiares/relacionados PEP
-    familiaresRelacionadosPEP: Array.from({ length: 10 }, (_, index) => ({
-      numeroItem: index + 1,
+    // Array dinámico de familiares/relacionados PEP (inicia con 1 item)
+    familiaresRelacionadosPEP: [{
+      numeroItem: 1,
       relacionParentesco: '',
       nombreApellidos: '',
       tipoIdentificacion: { cc: false, ti: false, ce: false, rut: false, pasaporte: false, otro: false },
@@ -164,7 +164,7 @@ const FormularioVinculacion = () => {
       cargoOcupacion: '',
       fechaVinculacionCargo: '',
       fechaDesvinculacionCargo: ''
-    }))
+    }]
   });
 
   const totalSteps = 9;
@@ -184,6 +184,40 @@ const FormularioVinculacion = () => {
         [childField]: value
       }
     }));
+  };
+
+  // Función para agregar un nuevo familiar
+  const agregarFamiliar = () => {
+    const nuevoNumeroItem = formData.familiaresRelacionadosPEP.length + 1;
+    const nuevoFamiliar = {
+      numeroItem: nuevoNumeroItem,
+      relacionParentesco: '',
+      nombreApellidos: '',
+      tipoIdentificacion: { cc: false, ti: false, ce: false, rut: false, pasaporte: false, otro: false },
+      otroTipoIdentificacion: '',
+      numeroIdentificacion: '',
+      nacionalidad: '',
+      entidad: '',
+      cargoOcupacion: '',
+      fechaVinculacionCargo: '',
+      fechaDesvinculacionCargo: ''
+    };
+    
+    setFormData(prev => ({
+      ...prev,
+      familiaresRelacionadosPEP: [...prev.familiaresRelacionadosPEP, nuevoFamiliar]
+    }));
+  };
+
+  // Función para eliminar un familiar específico
+  const eliminarFamiliar = (index) => {
+    if (formData.familiaresRelacionadosPEP.length > 1) {
+      setFormData(prev => ({
+        ...prev,
+        familiaresRelacionadosPEP: prev.familiaresRelacionadosPEP.filter((_, i) => i !== index)
+          .map((familiar, i) => ({ ...familiar, numeroItem: i + 1 }))
+      }));
+    }
   };
 
   const nextStep = () => {
@@ -790,6 +824,8 @@ const FormularioVinculacion = () => {
               formData={formData}
               updateFormData={updateFormData}
               updateNestedFormData={updateNestedFormData}
+              agregarFamiliar={agregarFamiliar}
+              eliminarFamiliar={eliminarFamiliar}
             />
           </div>
         );

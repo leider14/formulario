@@ -137,9 +137,9 @@ export let cargoPEP = '';
 export let fechaVinculacionCargoPEP = '';
 export let fechaDesvinculacionCargoPEP = '';
 
-// Array de 10 componentes de familiares/relacionados PEP
-export let familiaresRelacionadosPEP = Array.from({ length: 10 }, (_, index) => ({
-  numeroItem: index + 1,
+// Array dinámico de familiares/relacionados PEP (inicia con 1 item)
+export let familiaresRelacionadosPEP = [{
+  numeroItem: 1,
   relacionParentesco: '',
   nombreApellidos: '',
   tipoIdentificacion: { cc: false, ti: false, ce: false, rut: false, pasaporte: false, otro: false },
@@ -150,7 +150,7 @@ export let familiaresRelacionadosPEP = Array.from({ length: 10 }, (_, index) => 
   cargoOcupacion: '',
   fechaVinculacionCargo: '',
   fechaDesvinculacionCargo: ''
-}));
+}];
 
 // ===== FORMULARIO DE CLIENTE =====
 
