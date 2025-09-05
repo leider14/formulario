@@ -46,7 +46,6 @@ export const LinkedTextInput = ({
     <div className={`mb-4 ${className}`}>
       <label className="block text-sm font-medium text-gray-700 mb-2">
         {label}
-        <span className="text-blue-600 ml-1">| {linkedField}</span>
         {required && <span className="text-red-500 ml-1">*</span>}
       </label>
       <div className="relative">

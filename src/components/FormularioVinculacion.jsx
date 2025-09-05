@@ -63,6 +63,7 @@ const FormularioVinculacion = () => {
 
     // Dirección envío correspondencia
     emailRecepcionFactura: '',
+    telefonoRecepcionFactura: '',
 
     // Información Financiera
     fechaCorteEstadosFinancieros: '',
@@ -596,6 +597,13 @@ const FormularioVinculacion = () => {
               type="email"
               value={formData.emailRecepcionFactura}
               onChange={(e) => updateFormData('emailRecepcionFactura', e.target.value)}
+              required
+            />
+
+            <TextInput
+              label="NÚMERO DE TELÉFONO DE RECEPCIÓN FACTURA ELECTRÓNICA"
+              value={formData.telefonoRecepcionFactura}
+              onChange={(e) => updateFormData('telefonoRecepcionFactura', e.target.value)}
               required
             />
           </div>
