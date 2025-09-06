@@ -10,9 +10,9 @@ import {
   PEPSDeclaration
 } from './FormComponents.jsx';
 import FormularioPEP from './FormularioPEP.jsx';
-import * as values from '../values.js';
+import { updateValues } from '../values.js';
 
-const FormularioVinculacion = () => {
+const FormularioVinculacion = ({ personaId }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     // Información general
@@ -264,12 +264,8 @@ const FormularioVinculacion = () => {
   };
 
   const saveToValues = () => {
-    // Actualizar todas las variables en values.js
-    Object.keys(formData).forEach(key => {
-      if (values[key] !== undefined) {
-        values[key] = formData[key];
-      }
-    });
+    // Actualizar todas las variables en values.js usando la función setter
+    updateValues(formData);
     
     // Mensaje personalizado según si es PEP o no
     if (isPersonaPoliticamenteExpuesta()) {
@@ -285,6 +281,19 @@ const FormularioVinculacion = () => {
         return (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Información General</h2>
+            
+            {/* Información de la persona */}
+            {personaId && (
+              <div className="bg-green-50 p-4 rounded-lg mb-6">
+                <h3 className="text-lg font-semibold text-green-900 mb-2">Información de la Persona</h3>
+                <p className="text-green-800 text-sm">
+                  <strong>ID de Persona:</strong> {personaId}
+                </p>
+                <p className="text-green-800 text-sm mt-1">
+                  Este formulario está asociado a la persona con el ID especificado en la URL.
+                </p>
+              </div>
+            )}
             
             <div className="bg-blue-50 p-4 rounded-lg mb-6">
               <h3 className="text-lg font-semibold text-blue-900 mb-2">Compromiso con Colombia</h3>

@@ -89,5 +89,82 @@ export let declaracionOrigenFondosCliente = '';
 export let compromisoCliente = '';
 export let autorizacionTratamientoDatosCliente = '';
 
+// Objeto mutable para almacenar todos los valores del cliente
+const mutableValuesCliente = {
+  fechaCliente,
+  empresaCliente,
+  tipoCliente,
+  tipoPersonaCliente,
+  tipoDocumentoCliente,
+  otroTipoDocumentoCliente,
+  nombreRazonSocialCliente,
+  nombreApellidosRepresentanteCliente,
+  tipoDocumentoRepresentanteCliente,
+  otroTipoDocumentoRepresentanteCliente,
+  numeroDocumentoRepresentanteCliente,
+  direccionCliente,
+  barrioCliente,
+  ciudadMunicipioCliente,
+  departamentoCliente,
+  telefonoCliente,
+  emailCliente,
+  sitioWebCliente,
+  nombreContactoCliente,
+  celularContactoCliente,
+  tipoIVACliente,
+  granContribuyenteCliente,
+  resolucionGranContribuyenteCliente,
+  autorretenedorCliente,
+  resolucionAutorretenedorCliente,
+  indicadorCREE41Cliente,
+  indicadorRetencion42Cliente,
+  actividadEconomicaDIANCliente,
+  codigoEANSupermercadosCliente,
+  tipoDocumentoEntregaCliente,
+  tipoClienteCredito,
+  transaccionesInternacionalesCliente,
+  paisesTransaccionesCliente,
+  activosVirtualesCliente,
+  paisesActivosVirtualesCliente,
+  carteraHipotecaCliente,
+  valorCarteraHipotecaCliente,
+  pignoracionHipotecaCliente,
+  valorPignoracionHipotecaCliente,
+  esPEPCliente,
+  administraRecursosPoliticosCliente,
+  gozaReconocimientoPublicoCliente,
+  ejercePoderPublicoCliente,
+  nombreEntidadVinculadaCliente,
+  nitEntidadVinculadaCliente,
+  cargoDesempenadoCliente,
+  fechaVinculacionCliente,
+  fechaDesvinculacionCliente,
+  tieneRelacionPEPCliente,
+  tipoRelacionPEPCliente,
+  personasPEPCliente,
+  accionistasCliente,
+  contactoVentasCliente,
+  declaracionOrigenFondosCliente,
+  compromisoCliente,
+  autorizacionTratamientoDatosCliente
+};
 
+// Función para actualizar múltiples valores del cliente
+export const updateValuesCliente = (updates) => {
+  Object.keys(updates).forEach(key => {
+    if (mutableValuesCliente.hasOwnProperty(key)) {
+      mutableValuesCliente[key] = updates[key];
+    }
+  });
+};
+
+// Función para obtener todos los valores actuales del cliente
+export const getAllValuesCliente = () => {
+  return { ...mutableValuesCliente };
+};
+
+// Función para obtener un valor específico del cliente
+export const getValueCliente = (key) => {
+  return mutableValuesCliente[key];
+};
 

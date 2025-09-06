@@ -243,3 +243,143 @@ export let contactoVentasCliente = '';
 export let declaracionOrigenFondosCliente = '';
 export let compromisoCliente = '';
 export let autorizacionTratamientoDatosCliente = '';
+
+// Objeto mutable para almacenar todos los valores
+const mutableValues = {
+  fechaDiligenciamiento,
+  tipoVinculacion,
+  claseTercero,
+  tipoEntidad,
+  nombreClientePrincipal,
+  nombreRazonSocial,
+  nit,
+  nombreComercial,
+  sigla,
+  direccionPrincipal,
+  ciudad,
+  numeroCelular,
+  telefono,
+  departamento,
+  tipoEmpresa,
+  codigoCIIU,
+  email,
+  licitaVendeEstado,
+  promedioVentasEstado,
+  nombreApellidos,
+  tipoDocumento,
+  otroTipoDocumento,
+  numeroDocumento,
+  expedidoEn,
+  nacionalidad,
+  direccionResidencia,
+  departamentoResidencia,
+  emailPersonaNatural,
+  telefonoPersonaNatural,
+  celularPersonaNatural,
+  otroTelefono,
+  empresaDondeLabora,
+  direccionLaboral,
+  ciudadMunicipioLaboral,
+  departamentoLaboral,
+  licitaVendeEstadoPersonaNatural,
+  promedioVentasEstadoPersonaNatural,
+  descripcionActividad,
+  emailRecepcionFactura,
+  fechaCorteEstadosFinancieros,
+  soporteFinanciero,
+  perfilTributario1,
+  perfilTributario2,
+  operacionesMonedaExtranjera,
+  declaracionPEPS,
+  origenFondos,
+  tipoDiligenciamientoPEP,
+  fechaDiligenciamientoPEP,
+  tipoOperacionItalcol,
+  nombresApellidosPEP,
+  tipoDocumentoPEP,
+  otroTipoDocumentoPEP,
+  numeroDocumentoPEP,
+  ocupacionProfesionPEP,
+  nacionalidadPEP,
+  entidadPEP,
+  cargoPEP,
+  fechaVinculacionCargoPEP,
+  fechaDesvinculacionCargoPEP,
+  familiaresRelacionadosPEP,
+  fechaCliente,
+  empresaCliente,
+  tipoCliente,
+  tipoPersonaCliente,
+  tipoDocumentoCliente,
+  otroTipoDocumentoCliente,
+  nombreRazonSocialCliente,
+  tipoDocumentoRepresentanteCliente,
+  otroTipoDocumentoRepresentanteCliente,
+  numeroDocumentoRepresentanteCliente,
+  nombreApellidosRepresentanteCliente,
+  direccionCliente,
+  barrioCliente,
+  ciudadMunicipioCliente,
+  departamentoCliente,
+  telefonoCliente,
+  emailCliente,
+  sitioWebCliente,
+  nombreContactoCliente,
+  telefonoContactoCliente,
+  celularContactoCliente,
+  tipoIVACliente,
+  granContribuyenteCliente,
+  resolucionGranContribuyenteCliente,
+  autorretenedorCliente,
+  resolucionAutorretenedorCliente,
+  indicadorCREE41Cliente,
+  indicadorRetencion42Cliente,
+  actividadEconomicaDIANCliente,
+  codigoEANSupermercadosCliente,
+  tipoDocumentoEntregaCliente,
+  tipoClienteCredito,
+  transaccionesInternacionalesCliente,
+  paisesTransaccionesCliente,
+  activosVirtualesCliente,
+  paisesActivosVirtualesCliente,
+  carteraHipotecaCliente,
+  valorCarteraHipotecaCliente,
+  pignoracionHipotecaCliente,
+  valorPignoracionHipotecaCliente,
+  esPEPCliente,
+  administraRecursosPoliticosCliente,
+  gozaReconocimientoPublicoCliente,
+  ejercePoderPublicoCliente,
+  nombreEntidadVinculadaCliente,
+  nitEntidadVinculadaCliente,
+  cargoDesempenadoCliente,
+  fechaVinculacionCliente,
+  fechaDesvinculacionCliente,
+  tieneRelacionPEPCliente,
+  tipoRelacionPEPCliente,
+  personasPEPCliente,
+  accionistasCliente,
+  contactoVentasCliente,
+  declaracionOrigenFondosCliente,
+  compromisoCliente,
+  autorizacionTratamientoDatosCliente
+};
+
+// Función para actualizar múltiples valores
+export const updateValues = (updates) => {
+  Object.keys(updates).forEach(key => {
+    if (mutableValues.hasOwnProperty(key)) {
+      mutableValues[key] = updates[key];
+    }
+  });
+};
+
+// Función para obtener todos los valores actuales
+export const getAllValues = () => {
+  return { ...mutableValues };
+};
+
+// Función para obtener un valor específico
+export const getValue = (key) => {
+  return mutableValues[key];
+};

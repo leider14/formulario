@@ -7,9 +7,9 @@ import {
   DateInput,
   RadioGroup
 } from './FormComponents.jsx';
-import * as valuesCliente from '../valuesCliente.js';
+import { updateValuesCliente } from '../valuesCliente.js';
 
-const FormularioCliente = () => {
+const FormularioCliente = ({ personaId }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     // Información general
@@ -143,12 +143,8 @@ const FormularioCliente = () => {
   };
 
   const saveToValues = () => {
-    // Actualizar todas las variables en valuesCliente.js
-    Object.keys(formData).forEach(key => {
-      if (valuesCliente[key] !== undefined) {
-        valuesCliente[key] = formData[key];
-      }
-    });
+    // Actualizar todas las variables en valuesCliente.js usando la función setter
+    updateValuesCliente(formData);
     
     alert('Datos guardados exitosamente en valuesCliente.js');
   };
@@ -159,6 +155,19 @@ const FormularioCliente = () => {
         return (
           <div className="space-y-6">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Información General</h2>
+            
+            {/* Información de la persona */}
+            {personaId && (
+              <div className="bg-green-50 p-4 rounded-lg mb-6">
+                <h3 className="text-lg font-semibold text-green-900 mb-2">Información de la Persona</h3>
+                <p className="text-green-800 text-sm">
+                  <strong>ID de Persona:</strong> {personaId}
+                </p>
+                <p className="text-green-800 text-sm mt-1">
+                  Este formulario PEP está asociado a la persona con el ID especificado en la URL.
+                </p>
+              </div>
+            )}
             
             <div className="bg-blue-50 p-4 rounded-lg mb-6">
               <h3 className="text-lg font-semibold text-blue-900 mb-2">Registro de Clientes</h3>

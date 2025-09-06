@@ -1,9 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { CONFIG } from '../config.js';
 
-const FormularioSelector = ({ onSelectFormulario }) => {
+const FormularioSelector = () => {
+  const navigate = useNavigate();
+
   const formularios = [
     {
-      id: 'vinculacion',
+      id: 'vinculacion-clientes-form',
       titulo: 'Formulario de Vinculación',
       descripcion: 'Formulario para vinculación de clientes y proveedores',
       icono: '📋',
@@ -11,19 +15,19 @@ const FormularioSelector = ({ onSelectFormulario }) => {
       disponible: true
     },
     {
-      id: 'cliente',
-      titulo: 'Formulario Registro de Clientes',
-      descripcion: 'Formulario completo para registro y actualización de clientes con información tributaria y PEP',
-      icono: '👤',
-      color: 'green',
-      disponible: true
-    },
-    {
-      id: 'pep',
+      id: 'pep-form',
       titulo: 'Formulario PEP',
       descripcion: 'Formulario para Personas Expuestas Políticamente',
       icono: '🏛️',
       color: 'purple',
+      disponible: true
+    },
+    {
+      id: 'cliente-form',
+      titulo: 'Formulario Registro de Clientes',
+      descripcion: 'Formulario completo para registro y actualización de clientes con información tributaria y PEP',
+      icono: '👤',
+      color: 'green',
       disponible: false
     },
     {
@@ -44,6 +48,12 @@ const FormularioSelector = ({ onSelectFormulario }) => {
       orange: 'bg-orange-50 border-orange-200 hover:bg-orange-100 text-orange-800'
     };
     return colorMap[color] || colorMap.blue;
+  };
+
+  const handleFormularioClick = (formularioId) => {
+    // ID fijo permitido para desarrollo
+    const personaId = CONFIG.ALLOWED_PERSONA_ID;
+    navigate(`/formulario/${formularioId}/${personaId}`);
   };
 
   return (
@@ -70,7 +80,7 @@ const FormularioSelector = ({ onSelectFormulario }) => {
                   ? `${getColorClasses(formulario.color)} cursor-pointer transform hover:scale-105 hover:shadow-lg` 
                   : 'bg-gray-100 border-gray-200 text-gray-500 cursor-not-allowed'
               }`}
-              onClick={() => formulario.disponible && onSelectFormulario(formulario.id)}
+              onClick={() => formulario.disponible && handleFormularioClick(formulario.id)}
             >
               {/* Badge de estado */}
               <div className="absolute top-4 right-4">
@@ -119,19 +129,48 @@ const FormularioSelector = ({ onSelectFormulario }) => {
               <p className="font-medium text-gray-700 mb-2">Formularios Disponibles:</p>
               <ul className="space-y-1">
                 <li>• Formulario de Vinculación - Completamente funcional</li>
-                <li>• Formulario Registro de Clientes - Completamente funcional</li>
+                <li>• Formulario PEP - Completamente funcional</li>
                 <li>• Otros formularios - En desarrollo</li>
               </ul>
             </div>
             <div>
               <p className="font-medium text-gray-700 mb-2">Características:</p>
               <ul className="space-y-1">
-                <li>• Autenticación por teléfono</li>
+                <li>• URLs dinámicas con parámetros</li>
                 <li>• Guardado automático de datos</li>
                 <li>• Interfaz responsive</li>
                 <li>• Validación de campos</li>
               </ul>
             </div>
+          </div>
+        </div>
+
+        {/* Información sobre URLs */}
+        <div className="bg-blue-50 rounded-lg border border-blue-200 p-6 mt-6">
+          <h3 className="text-lg font-semibold text-blue-900 mb-3">
+            🔗 URLs de Acceso Directo
+          </h3>
+          <p className="text-sm text-blue-800 mb-3">
+            Puedes acceder directamente a los formularios usando estas URLs con el ID fijo permitido:
+          </p>
+          <div className="space-y-2 text-sm">
+            <div className="bg-white p-3 rounded border">
+              <code className="text-blue-600">
+                /formulario/vinculacion-clientes-form/{CONFIG.ALLOWED_PERSONA_ID}
+              </code>
+              <p className="text-gray-600 mt-1">Para el formulario de vinculación</p>
+            </div>
+            <div className="bg-white p-3 rounded border">
+              <code className="text-blue-600">
+                /formulario/pep-form/{CONFIG.ALLOWED_PERSONA_ID}
+              </code>
+              <p className="text-gray-600 mt-1">Para el formulario PEP</p>
+            </div>
+          </div>
+          <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded">
+            <p className="text-sm text-yellow-800">
+              <strong>⚠️ Nota:</strong> {CONFIG.MESSAGES.ONLY_ALLOWED_ID}
+            </p>
           </div>
         </div>
       </div>
