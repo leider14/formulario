@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/formulario/:id",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/dashboard/:path*",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/login",
+      "destination": "/index.html"
+    }
+  ]
+}

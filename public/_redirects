@@ -1,0 +1,4 @@
+# Redirects para formularios públicos
+/formulario/* /index.html 200
+/dashboard/* /index.html 200
+/login /index.html 200

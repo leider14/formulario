@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Formulario en Vercel</title>
+    <script type="module">
+        import { obtenerFormularioEnviadoPorId, verificarConexionFirestore } from './firestore.js';
+        
+        // Función para verificar el formulario específico
+        async function verificarFormulario() {
+            try {
+                console.log('=== VERIFICANDO FORMULARIO EN VERCEL ===');
+                
+                // Primero verificar la conexión
+                console.log('1. Verificando conexión a Firestore...');
+                await verificarConexionFirestore();
+                
+                // Luego buscar el formulario específico
+                console.log('2. Buscando formulario: 2UxEfD7zMcURyeapZV8G');
+                const formulario = await obtenerFormularioEnviadoPorId('2UxEfD7zMcURyeapZV8G');
+                
+                if (formulario) {
+                    console.log('✅ Formulario encontrado:', formulario);
+                    document.getElementById('resultado').innerHTML = `
+                        <div style="background: #d4edda; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                            <h3>✅ Formulario Encontrado</h3>
+                            <p><strong>Nombre:</strong> ${formulario.nombrePersona}</p>
+                            <p><strong>Teléfono:</strong> ${formulario.telefono}</p>
+                            <p><strong>Tipo:</strong> ${formulario.tipoFormulario}</p>
+                            <p><strong>Estado:</strong> ${formulario.estado}</p>
+                            <p><strong>Activo:</strong> ${formulario.activo ? 'Sí' : 'No'}</p>
+                            <p><strong>URL de acceso:</strong> <a href="https://formularioclientes-zeta.vercel.app/formulario/${formulario.id}" target="_blank">https://formularioclientes-zeta.vercel.app/formulario/${formulario.id}</a></p>
+                        </div>
+                    `;
+                } else {
+                    console.log('❌ Formulario no encontrado');
+                    document.getElementById('resultado').innerHTML = `
+                        <div style="background: #f8d7da; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                            <h3>❌ Formulario No Encontrado</h3>
+                            <p>El formulario con ID "2UxEfD7zMcURyeapZV8G" no existe en la base de datos.</p>
+                            <p>Necesitas crear el formulario primero.</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('❌ Error:', error);
+                document.getElementById('resultado').innerHTML = `
+                    <div style="background: #f8d7da; padding: 15px; border-radius: 5px; margin: 10px 0;">
+                        <h3>❌ Error</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Ejecutar cuando se carga la página
+        window.addEventListener('load', verificarFormulario);
+    </script>
+</head>
+<body style="padding: 20px; font-family: Arial, sans-serif;">
+    <h1>Verificación de Formulario en Vercel</h1>
+    
+    <div style="margin: 20px 0;">
+        <button onclick="verificarFormulario()" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            🔍 Verificar Formulario
+        </button>
+    </div>
+    
+    <div id="resultado" style="padding: 10px; background: #f8f9fa; border-radius: 5px; margin: 10px 0;">
+        Ejecutando verificación automática...
+    </div>
+    
+    <div style="margin-top: 20px; padding: 15px; background: #e9ecef; border-radius: 5px;">
+        <h3>Instrucciones:</h3>
+        <ol>
+            <li>Abre las herramientas de desarrollador (F12)</li>
+            <li>Ve a la pestaña "Console"</li>
+            <li>Recarga la página para ver la verificación automática</li>
+            <li>Si el formulario existe, verás la información y el enlace</li>
+            <li>Si no existe, necesitas crearlo primero</li>
+        </ol>
+        
+        <h3>URLs de Prueba:</h3>
+        <ul>
+            <li><a href="https://formularioclientes-zeta.vercel.app/formulario/2UxEfD7zMcURyeapZV8G" target="_blank">https://formularioclientes-zeta.vercel.app/formulario/2UxEfD7zMcURyeapZV8G</a></li>
+            <li><a href="https://formularioclientes-zeta.vercel.app/" target="_blank">https://formularioclientes-zeta.vercel.app/</a></li>
+        </ul>
+    </div>
+</body>
+</html>
