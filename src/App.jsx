@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, useParams, useNavigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useParams, useNavigate, useLocation } from 'react-router-dom'
 import { onAuthStateChange, signOut } from './services/firebaseAuth';
 import FormularioVinculacion from './components/FormularioVinculacion.jsx'
 import FormularioCliente from './components/FormularioCliente.jsx'
@@ -9,6 +9,36 @@ import FormularioPublico from './components/FormularioPublico.jsx'
 import Login from './components/Login.jsx'
 import AccessDenied from './components/AccessDenied.jsx'
 import { CONFIG } from './config.js'
+
+// Componente para manejar formularios públicos con query parameters
+const FormularioPublicoConQuery = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  
+  // Obtener el ID del formulario desde query parameters
+  const urlParams = new URLSearchParams(location.search);
+  const formularioId = urlParams.get('idform');
+  
+  if (!formularioId) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">ID de Formulario Requerido</h1>
+          <p className="text-gray-600 mb-4">Debe proporcionar un ID de formulario válido.</p>
+          <p className="text-sm text-gray-500 mb-4">Ejemplo: ?idform=ABC123XYZ</p>
+          <button
+            onClick={() => navigate('/')}
+            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+          >
+            Ir al Inicio
+          </button>
+        </div>
+      </div>
+    );
+  }
+  
+  return <FormularioPublico formularioId={formularioId} />;
+};
 
 // Componente para manejar formularios con parámetros de URL
 const FormularioWithParams = () => {
@@ -131,8 +161,8 @@ const AppContent = () => {
   return (
     <div className="App">
       <Routes>
-        {/* Ruta pública para formularios enviados */}
-        <Route path="/formulario/:id" element={<FormularioPublico />} />
+        {/* Ruta pública para formularios enviados con query parameters */}
+        <Route path="/formulario" element={<FormularioPublicoConQuery />} />
         
         {/* Rutas del dashboard (requieren autenticación) */}
         {user ? (

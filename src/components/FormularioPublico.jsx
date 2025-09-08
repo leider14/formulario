@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { obtenerFormularioEnviadoPorId } from '../../firestore.js';
 import ValidacionAcceso from './ValidacionAcceso.jsx';
 import FormularioVinculacion from './FormularioVinculacion.jsx';
 import FormularioCliente from './FormularioCliente.jsx';
 
-const FormularioPublico = () => {
-  const { id } = useParams();
+const FormularioPublico = ({ formularioId }) => {
   const [formularioEnviado, setFormularioEnviado] = useState(null);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState('');
@@ -14,19 +12,19 @@ const FormularioPublico = () => {
 
   useEffect(() => {
     cargarFormularioEnviado();
-  }, [id]);
+  }, [formularioId]);
 
   const cargarFormularioEnviado = async () => {
     try {
       setCargando(true);
       setError('');
       
-      if (!id) {
+      if (!formularioId) {
         setError('ID de formulario no proporcionado');
         return;
       }
 
-      const formulario = await obtenerFormularioEnviadoPorId(id);
+      const formulario = await obtenerFormularioEnviadoPorId(formularioId);
       
       if (!formulario) {
         setError('Formulario no encontrado');
