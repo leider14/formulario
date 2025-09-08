@@ -1,16 +1,27 @@
 {
   "rewrites": [
     {
-      "source": "/formulario/:id",
+      "source": "/formulario/(.*)",
       "destination": "/index.html"
     },
     {
-      "source": "/dashboard/:path*",
+      "source": "/dashboard/(.*)",
       "destination": "/index.html"
     },
     {
       "source": "/login",
       "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/formulario/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache"
+        }
+      ]
     }
   ]
 }
