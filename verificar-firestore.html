@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Conexión Firestore</title>
+    <script type="module">
+        import { verificarConexionFirestore, debugBuscarFormulario } from './firestore.js';
+        
+        // Función para verificar la conexión
+        async function verificarConexion() {
+            try {
+                console.log('Iniciando verificación de conexión...');
+                const resultado = await verificarConexionFirestore();
+                
+                if (resultado) {
+                    console.log('✅ Verificación completada exitosamente');
+                    document.getElementById('resultado').innerHTML = '✅ Verificación completada. Revisa la consola para ver los detalles.';
+                } else {
+                    console.log('❌ Error en la verificación');
+                    document.getElementById('resultado').innerHTML = '❌ Error en la verificación. Revisa la consola para ver los errores.';
+                }
+            } catch (error) {
+                console.error('❌ Error:', error);
+                document.getElementById('resultado').innerHTML = '❌ Error: ' + error.message;
+            }
+        }
+        
+        // Función para buscar el formulario específico
+        async function buscarFormulario() {
+            try {
+                console.log('Buscando formulario específico...');
+                await debugBuscarFormulario('2UxEfD7zMcURyeapZV8G');
+                document.getElementById('busqueda').innerHTML = '✅ Búsqueda completada. Revisa la consola para ver los resultados.';
+            } catch (error) {
+                console.error('❌ Error en búsqueda:', error);
+                document.getElementById('busqueda').innerHTML = '❌ Error en búsqueda: ' + error.message;
+            }
+        }
+        
+        // Ejecutar cuando se carga la página
+        window.addEventListener('load', () => {
+            verificarConexion();
+        });
+        
+        // Hacer las funciones globales para poder llamarlas desde los botones
+        window.verificarConexion = verificarConexion;
+        window.buscarFormulario = buscarFormulario;
+    </script>
+</head>
+<body style="padding: 20px; font-family: Arial, sans-serif;">
+    <h1>Verificación de Conexión Firestore</h1>
+    
+    <div style="margin: 20px 0;">
+        <button onclick="verificarConexion()" style="padding: 10px 20px; margin-right: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            🔍 Verificar Conexión
+        </button>
+        
+        <button onclick="buscarFormulario()" style="padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            📋 Buscar Formulario
+        </button>
+    </div>
+    
+    <div id="resultado" style="padding: 10px; background: #f8f9fa; border-radius: 5px; margin: 10px 0;">
+        Ejecutando verificación automática...
+    </div>
+    
+    <div id="busqueda" style="padding: 10px; background: #f8f9fa; border-radius: 5px; margin: 10px 0;">
+        Haz clic en "Buscar Formulario" para buscar el formulario específico.
+    </div>
+    
+    <div style="margin-top: 20px; padding: 15px; background: #e9ecef; border-radius: 5px;">
+        <h3>Instrucciones:</h3>
+        <ol>
+            <li>Abre las herramientas de desarrollador (F12)</li>
+            <li>Ve a la pestaña "Console"</li>
+            <li>Recarga la página para ver la verificación automática</li>
+            <li>Haz clic en "Buscar Formulario" para buscar el formulario específico</li>
+            <li>Revisa los logs en la consola para ver qué colecciones existen</li>
+        </ol>
+    </div>
+</body>
+</html>

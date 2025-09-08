@@ -1,23 +1,21 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApp, getApps } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, RecaptchaVerifier } from "firebase/auth";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCAsKu6VeClc0JoMlZ0GMYyexggAcN580A",
-  authDomain: "jimbot-3f25a.firebaseapp.com",
-  databaseURL: "https://jimbot-3f25a-default-rtdb.firebaseio.com",
-  projectId: "jimbot-3f25a",
-  storageBucket: "jimbot-3f25a.firebasestorage.app",
-  messagingSenderId: "949987932841",
-  appId: "1:949987932841:web:fc502008dad884de9b87b8",
-  measurementId: "G-113ZLNRXCD"
+  apiKey: "AIzaSyB-yCOt8Cc0cNtCxwXrQZLrG3vvYgX5nc8",
+  authDomain: "formularios-9ecc5.firebaseapp.com",
+  projectId: "formularios-9ecc5",
+  storageBucket: "formularios-9ecc5.firebasestorage.app",
+  messagingSenderId: "358726414251",
+  appId: "1:358726414251:web:fb25ed639527502eb86cee"
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 

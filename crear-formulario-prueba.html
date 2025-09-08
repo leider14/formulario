@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Formulario de Prueba</title>
+    <script type="module">
+        import { crearFormularioEnviadoConId } from './firestore.js';
+        
+        // Función para crear el formulario con ID específico
+        async function crearFormularioPrueba() {
+            try {
+                const formularioPrueba = {
+                    formularioId: 'pep-form',
+                    empresaId: 'empresa-prueba-123',
+                    nombrePersona: 'Juan Pérez García',
+                    telefono: '3001234567',
+                    cedula: '12345678',
+                    fechaEnvio: new Date(),
+                    fechaLimite: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 días desde ahora
+                    estado: 'pendiente',
+                    urlAcceso: '/formulario/2UxEfD7zMcURyeapZV8G',
+                    activo: true,
+                    tipoFormulario: 'pep',
+                    creadoPor: 'usuario-prueba'
+                };
+
+                const id = await crearFormularioEnviadoConId('2UxEfD7zMcURyeapZV8G', formularioPrueba);
+                console.log('✅ Formulario creado exitosamente con ID:', id);
+                console.log('🔗 URL de acceso:', `http://localhost:5173/formulario/${id}`);
+                console.log('📱 Teléfono para acceso:', formularioPrueba.telefono);
+                
+                alert(`Formulario creado exitosamente!\n\nID: ${id}\nURL: http://localhost:5173/formulario/${id}\nTeléfono: ${formularioPrueba.telefono}`);
+            } catch (error) {
+                console.error('❌ Error al crear formulario:', error);
+                alert('Error al crear el formulario: ' + error.message);
+            }
+        }
+        
+        // Ejecutar cuando se carga la página
+        window.addEventListener('load', crearFormularioPrueba);
+    </script>
+</head>
+<body>
+    <div style="padding: 20px; font-family: Arial, sans-serif;">
+        <h1>Creando Formulario de Prueba...</h1>
+        <p>Por favor, revisa la consola del navegador para ver el resultado.</p>
+        <p>Si hay algún error, aparecerá aquí.</p>
+    </div>
+</body>
+</html>

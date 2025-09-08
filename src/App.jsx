@@ -5,6 +5,7 @@ import { onAuthStateChange, signOut } from './services/firebaseAuth';
 import FormularioVinculacion from './components/FormularioVinculacion.jsx'
 import FormularioCliente from './components/FormularioCliente.jsx'
 import FormularioSelector from './components/FormularioSelector.jsx'
+import FormularioPublico from './components/FormularioPublico.jsx'
 import Login from './components/Login.jsx'
 import AccessDenied from './components/AccessDenied.jsx'
 import { CONFIG } from './config.js'
@@ -129,30 +130,36 @@ const AppContent = () => {
 
   return (
     <div className="App">
-      {user ? (
-        <Routes>
-          <Route path="/" element={
-            <div>
-              <div className="bg-white shadow-sm border-b px-4 py-3">
-                <div className="flex justify-between items-center">
-                  <h1 className="text-lg font-semibold text-gray-900">Sistema de Formularios</h1>
-                  <button
-                    onClick={handleLogout}
-                    className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors"
-                  >
-                    Cerrar Sesión
-                  </button>
+      <Routes>
+        {/* Ruta pública para formularios enviados */}
+        <Route path="/formulario/:id" element={<FormularioPublico />} />
+        
+        {/* Rutas del dashboard (requieren autenticación) */}
+        {user ? (
+          <>
+            <Route path="/" element={
+              <div>
+                <div className="bg-white shadow-sm border-b px-4 py-3">
+                  <div className="flex justify-between items-center">
+                    <h1 className="text-lg font-semibold text-gray-900">Sistema de Formularios</h1>
+                    <button
+                      onClick={handleLogout}
+                      className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors"
+                    >
+                      Cerrar Sesión
+                    </button>
+                  </div>
                 </div>
+                <FormularioSelector />
               </div>
-              <FormularioSelector />
-            </div>
-          } />
-          <Route path="/formulario/:tipoFormulario/:personaId" element={<FormularioWithParams />} />
-          <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
-        </Routes>
-      ) : (
-        <Login onLoginSuccess={handleLoginSuccess} />
-      )}
+            } />
+            <Route path="/dashboard/formulario/:tipoFormulario/:personaId" element={<FormularioWithParams />} />
+            <Route path="/login" element={<Login onLoginSuccess={handleLoginSuccess} />} />
+          </>
+        ) : (
+          <Route path="*" element={<Login onLoginSuccess={handleLoginSuccess} />} />
+        )}
+      </Routes>
     </div>
   );
 };
