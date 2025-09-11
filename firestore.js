@@ -20,6 +20,7 @@ const db = getFirestore(app);
 // Modelo: Empresa
 export const Empresa = {
   id: "",
+  
   nombre: "",
   email: "",
   telefono: "",

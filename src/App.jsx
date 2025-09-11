@@ -19,25 +19,38 @@ const FormularioPublicoConQuery = () => {
   const urlParams = new URLSearchParams(location.search);
   const formularioId = urlParams.get('idform');
   
-  if (!formularioId) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">ID de Formulario Requerido</h1>
-          <p className="text-gray-600 mb-4">Debe proporcionar un ID de formulario válido.</p>
-          <p className="text-sm text-gray-500 mb-4">Ejemplo: ?idform=ABC123XYZ</p>
-          <button
-            onClick={() => navigate('/')}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
-          >
-            Ir al Inicio
-          </button>
-        </div>
-      </div>
-    );
+  // Si hay un ID de formulario, mostrar el formulario público
+  if (formularioId) {
+    return <FormularioPublico formularioId={formularioId} />;
   }
   
-  return <FormularioPublico formularioId={formularioId} />;
+  // Si no hay ID de formulario, mostrar mensaje informativo
+  return (
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="text-center max-w-md mx-auto">
+        <div className="bg-white shadow-lg rounded-lg p-8">
+          <div className="mx-auto h-16 w-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+            <svg className="h-8 w-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Sistema de Formularios</h1>
+          <p className="text-gray-600 mb-6">
+            Accede a tu formulario usando el enlace que te fue enviado.
+          </p>
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+            <p className="text-sm text-blue-800">
+              <strong>Ejemplo de URL:</strong><br />
+              https://formularioclientes-zeta.vercel.app/?idform=ABC123XYZ
+            </p>
+          </div>
+          <p className="text-sm text-gray-500">
+            Si no tienes un enlace de formulario, contacta a la empresa que te lo envió.
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 // Componente para manejar formularios con parámetros de URL
@@ -161,13 +174,13 @@ const AppContent = () => {
   return (
     <div className="App">
       <Routes>
-        {/* Ruta pública para formularios enviados con query parameters */}
-        <Route path="/formulario" element={<FormularioPublicoConQuery />} />
+        {/* Ruta raíz que maneja formularios públicos con query parameters */}
+        <Route path="/" element={<FormularioPublicoConQuery />} />
         
         {/* Rutas del dashboard (requieren autenticación) */}
         {user ? (
           <>
-            <Route path="/" element={
+            <Route path="/dashboard" element={
               <div>
                 <div className="bg-white shadow-sm border-b px-4 py-3">
                   <div className="flex justify-between items-center">
